@@ -1,0 +1,20 @@
+// import {
+//     ApolloClient,
+//     InMemoryCache,
+//     ApolloProvider,
+//     gql
+//   } from "@apollo/client";
+  
+// let client = c() 
+
+// client
+//   .query({
+//     query: gql`
+//     query{
+//       currencies{
+//         label
+//         symbol
+//       }
+//     }
+//     `
+//   })
