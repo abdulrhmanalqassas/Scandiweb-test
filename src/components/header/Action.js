@@ -29,7 +29,7 @@ export class Action extends PureComponent {
                 const { currencies } = data;
 
                 return currencies.map((elem) => (
-                  <div>
+                  <div key={elem.label}>
                     {elem.symbol}
                     {elem.label}
                   </div>
@@ -40,7 +40,7 @@ export class Action extends PureComponent {
 
         </div>
         
-       <div className="nav-cart"><img src={cartIcon}></img></div> 
+       <div  className="nav-cart"><img alt="cart" src={cartIcon}></img></div> 
       </div>
     );
   }

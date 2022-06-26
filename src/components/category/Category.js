@@ -1,7 +1,16 @@
 import React, { PureComponent } from "react";
 
+
+
 export default class Category extends PureComponent{
     render() {
-        return (<h1>Category name</h1>)
+        return (
+            <div className="category" >
+        <h1 className="category-title" >Category name</h1>\
+        <div className="category-card-contanir">
+
+        </div>
+        </div>
+        )
     }
 }

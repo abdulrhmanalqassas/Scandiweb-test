@@ -1,12 +1,16 @@
 import { PureComponent } from 'react';
 import Header from './components/header/Header';
 import './App.css';
+import Category from './components/category/Category';
 
 export class App extends PureComponent {
   render() {
     return (
-      
-        <Header/>
+      <>
+       <Header/>
+        <Category/>
+      </>
+       
      
       
     )
