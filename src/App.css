@@ -129,4 +129,21 @@ li {
 
 }
 
+.category-card-contanir {
+  max-width:100% ;
+  padding: 0px 6.25rem 0 6.25rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 2.6rem;
+  grid-row-gap: 6.25rem;
+  }
+
+  .category-card-contanir div{
+background: #333;
+width: 24.125rem ;
+height:27.75rem;
+
+  }
+
 
