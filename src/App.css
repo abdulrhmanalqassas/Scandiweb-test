@@ -139,7 +139,7 @@ li {
   grid-row-gap: 6.25rem;
   }
 
-  .category-card-contanir div{
+.category-card{
 background: #333;
 width: 24.125rem ;
 height:27.75rem;
