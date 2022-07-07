@@ -1,12 +1,12 @@
-nav{
-  height: 80px;
+nav {
+  height: 5rem;
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
-  padding: 18PX 101PX ;
-  font-family: 'Raleway';
+  padding: 1.125rem 6.3125rem;
+  font-family: "Raleway";
   font-weight: 400;
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 120%;
 }
 
@@ -14,11 +14,10 @@ ul {
   list-style-type: none;
   display: flex;
   flex-direction: row;
-  gap: 30px;
+  gap: 1.875rem;
   margin: 0;
   padding: 0;
   overflow: hidden;
-
 }
 
 li {
@@ -28,20 +27,18 @@ li {
   text-align: center;
   text-decoration: none;
 }
-.nav-action{
+.nav-action {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  
 }
-.nav-icon{
-  width: 41px;
-  height: 41px;
+.nav-icon {
+  width: 2.5625rem;
+  height: 2.5625rem;
 }
 
-.nav-action{
- display :block;
- 
+.nav-action {
+  display: block;
 }
 
 .dropbtn {
@@ -51,7 +48,6 @@ li {
   cursor: pointer;
 }
 
-
 .dropdown {
   position: relative;
   display: inline-block;
@@ -60,19 +56,17 @@ li {
   display: inline-block;
   height: 0;
   width: 0;
-	border-left: 10px dashed transparent;
-	border-right: 10px dashed transparent;
-	border-top: 10px dashed #333;
+  border-left: 0.625rem dashed transparent;
+  border-right: 0.625rem dashed transparent;
+  border-top: 0.625rem dashed #333;
   position: relative;
- 
 }
 
 .dropdown:hover .dropdown-arrow {
-
-	border-left: 10px solid transparent;
-	border-right: 10px solid transparent;
-	border-bottom: 10px solid #333;
-  border-top: 10px solid transparent;
+  border-left: 0.625rem solid transparent;
+  border-right: 0.625rem solid transparent;
+  border-bottom: 0.625rem solid #333;
+  border-top: 0.625rem solid transparent;
 }
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
@@ -85,14 +79,13 @@ li {
   text-align: center;
 }
 
-
 .dropdown-content div {
   cursor: pointer;
   align-self: center;
   width: 114px;
   height: 45px;
   color: black;
-  font-family: 'Raleway';
+  font-family: "Raleway";
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -101,49 +94,64 @@ li {
   display: block;
 }
 
-
-.dropdown-content div:hover {background-color: #EEEEEE}
-
+.dropdown-content div:hover {
+  background-color: #eeeeee;
+}
 
 .dropdown:hover .dropdown-content {
   display: flex;
   flex-direction: column;
   align-content: center;
   align-items: center;
+ 
 }
 
-.nav-cart{
+.nav-cart {
   display: inline-block;
-  padding-left: 22px;
-  width: 20px;
-  height: 18px;
+  padding-left: 1.375rem;
+  width: 1.25rem;
+  height: 1.125rem;
 }
 
-.category-title{
-  
+.category-title {
   margin-left: 110px;
   font-style: normal;
   font-weight: 400;
   font-size: 42px;
   line-height: 160%;
-
 }
 
+
 .category-card-contanir {
-  max-width:100% ;
-  padding: 0px 6.25rem 0 6.25rem;
+  margin: 6.25rem;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  grid-column-gap: 2.6rem;
-  grid-row-gap: 6.25rem;
-  }
+  grid-template-columns: repeat(3,1fr);
+  gap: 100px 40px;
+  
+}
 
-.category-card{
-background: #333;
-width: 24.125rem ;
-height:27.75rem;
+.category-card {
+  padding: 1rem;
+  background: rgb(255, 255, 255);
+}
 
-  }
-
-
+.category-card div {
+  width : 22.125rem ;
+  height:20.625rem;
+  /* margin: 1rem; */
+}
+.category-card div img {
+  width : 22.125rem ;
+  height:20.625rem;
+}
+.category-card h2{
+font-family: 'Raleway';
+font-style: normal;
+font-weight: 300;
+font-size: 1.125rem;
+line-height: 160%;
+color: #1D1F22;
+}
+.category-card:hover{
+  filter: drop-shadow(0rem 0.25rem 2.1875rem rgba(168, 172, 176, 0.19));
+}
