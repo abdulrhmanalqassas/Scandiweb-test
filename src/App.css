@@ -103,7 +103,6 @@ li {
   flex-direction: column;
   align-content: center;
   align-items: center;
- 
 }
 
 .nav-cart {
@@ -120,29 +119,38 @@ li {
   font-size: 42px;
   line-height: 160%;
 }
-
+.shh{
+  padding: 6.25rem;
+}
 
 .category-card-contanir {
-  margin: 6.25rem;
+  margin: 3.125rem;
   display: grid;
   grid-template-columns: repeat(3,1fr);
-  gap: 100px 40px;
+  gap: 6.25rem 0 ;
   
 }
 
 .category-card {
   padding: 1rem;
+  /* width: 24.125rem;
+  height: 27.75rem; */
   background: rgb(255, 255, 255);
 }
 
-.category-card div {
-  width : 22.125rem ;
-  height:20.625rem;
-  /* margin: 1rem; */
+.category-card div{
+ position: relative;
 }
-.category-card div img {
+
+.category-card-img {
   width : 22.125rem ;
   height:20.625rem;
+}
+.category-card-icon{
+  display: none;
+  position :absolute;
+  right: 15px;
+bottom: -26px;
 }
 .category-card h2{
 font-family: 'Raleway';
@@ -154,4 +162,8 @@ color: #1D1F22;
 }
 .category-card:hover{
   filter: drop-shadow(0rem 0.25rem 2.1875rem rgba(168, 172, 176, 0.19));
+}
+
+.category-card:hover .category-card-icon{
+ display:block;
 }

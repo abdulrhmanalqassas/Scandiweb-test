@@ -1,6 +1,6 @@
 
 import React, { PureComponent } from "react";
-
+import  Common from "../../images/Common.png"
 //prop
 // img
 // name 
@@ -13,10 +13,12 @@ export default class Card  extends PureComponent{
             <div className="category-card">
 
                 <div>
-                <img src={this.props.gallery[0]} alt={this.props.titel}/>
+                <img className="category-card-img" src={this.props.gallery[0]} alt={this.props.titel}/>
+                <img className="category-card-icon" src={Common}/>
                 </div>
                 
                 <h2>{this.props.titel}</h2>
+                <h3>price</h3>
                
             </div>
         )

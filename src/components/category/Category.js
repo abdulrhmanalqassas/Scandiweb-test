@@ -12,6 +12,7 @@ const GET_PRODUCTS = gql`
         name
         inStock
         gallery
+       
       }
     }
   }
@@ -33,6 +34,7 @@ export default class Category extends PureComponent {
               titel={elem.name}
               inStock={elem.inStock}
               gallery={elem.gallery}
+              
             />
           ));
           return (
