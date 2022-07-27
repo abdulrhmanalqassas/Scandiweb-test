@@ -25,7 +25,7 @@ export class Action extends PureComponent {
               {({ loading, error, data }) => {
                 if (error) return <h1>Error...</h1>;
                 if (loading || !data) return <h1>Loading...</h1>;
-                console.log(data);
+                // console.log(data);
                 const { currencies } = data;
 
                 return currencies.map((elem) => (

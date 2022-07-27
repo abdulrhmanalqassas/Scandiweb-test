@@ -4,8 +4,8 @@ import { gql } from "@apollo/client";
 import { Query } from "@apollo/client/react/components";
 
 const GET_PRODUCTS = gql`
-  query {
-    category {
+  query PRODUCTS($title : String!){
+    category (input:{ title: $title }) {
       name
       products {
         id
@@ -21,16 +21,17 @@ const GET_PRODUCTS = gql`
 export default class Category extends PureComponent {
   render() {
     return (
-      <Query query={GET_PRODUCTS}>
+      <Query query={GET_PRODUCTS} variables={{title:"tech"}}>
         {({ loading, error, data }) => {
           if (error) return <h1>Error...</h1>;
           if (loading || !data) return <h1>Loading...</h1>;
-          console.log(data.category.products);
+          // console.log(data.category.products);
           const products = data.category.products;
-          console.log(data)
+          // console.log(data)
           const cards = products.map((elem) => (
             <Card
               key={elem.id}
+              id={elem.id}
               titel={elem.name}
               inStock={elem.inStock}
               gallery={elem.gallery}

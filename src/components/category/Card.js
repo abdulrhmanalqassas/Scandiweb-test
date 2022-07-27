@@ -6,13 +6,26 @@ import { Query } from "@apollo/client/react/components";
 // img
 // name
 // price
+// curincy
+
+function curincy(curincy, label = "USD") {
+  return curincy.currency.label === label;
+}
+
+function productPrice(data,lapel ){
+  let price = data.product.prices
+  .filter((price) => curincy(price,lapel))[0]
+ return (`${price.currency.symbol}${price.amount}`)
+   
+}
 
 const GET_PRICE = gql`
-  query {
-    product(id: "huarache-x-stussy-le") {
+  query Price($id: String!) {
+    product(id: $id) {
       prices {
         currency {
           label
+          symbol
         }
         amount
       }
@@ -34,23 +47,13 @@ export default class Card extends PureComponent {
         </div>
 
         <h2>{this.props.titel}</h2>
-        <Query query={GET_PRICE}>
-
-
-        {({ loading, error, data }) => {
-          if (error) return <h1>Error...</h1>;
-          if (loading || !data) return <h1>Loading...</h1>;
-          {console.log(">>>>>>>>>>>",data.product.prices[0].amount)}
-                return(
-                    <h1>
-                    {data.product.prices[0].amount}
-                </h1>
-                )
-                
-        }}
-
+        <Query query={GET_PRICE} variables={{ id: this.props.id }}>
+          {({ loading, error, data }) => {
+            if (error) return <h1>Error...</h1>;
+            if (loading || !data) return <h1>Loading...</h1>;
+            return <h1>{productPrice(data,"JPY")}</h1>;
+          }}
         </Query>
-       
       </div>
     );
   }
