@@ -1,8 +1,8 @@
 import { PureComponent } from "react";
 import { gql } from "@apollo/client";
 import cartIcon from "../../images/cart.png";
-import { Query, Mutation, Subscription } from "@apollo/client/react/components";
-import { graphql } from "@apollo/client/react/hoc";
+import { Query} from "@apollo/client/react/components";
+
 
 const GET_CURRENCIES = gql`
   query {

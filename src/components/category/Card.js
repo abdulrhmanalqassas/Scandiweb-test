@@ -43,7 +43,7 @@ export default class Card extends PureComponent {
             src={this.props.gallery[0]}
             alt={this.props.titel}
           />
-          <img className="category-card-icon" src={Common} />
+          <img alt="card-icon" className="category-card-icon" src={Common} />
         </div>
 
         <h2>{this.props.titel}</h2>
