@@ -2,6 +2,7 @@ import React, { PureComponent } from "react";
 import Card from "./Card";
 import { gql } from "@apollo/client";
 import { Query } from "@apollo/client/react/components";
+import  { connect } from 'react-redux';
 
 const GET_PRODUCTS = gql`
   query PRODUCTS($title : String!){
@@ -18,10 +19,10 @@ const GET_PRODUCTS = gql`
   }
 `;
 
-export default class Category extends PureComponent {
+export class Category extends PureComponent {
   render() {
     return (
-      <Query query={GET_PRODUCTS} variables={{title:"tech"}}>
+      <Query query={GET_PRODUCTS} variables={{title:this.props.category}}>
         {({ loading, error, data }) => {
           if (error) return <h1>Error...</h1>;
           if (loading || !data) return <h1>Loading...</h1>;
@@ -52,3 +53,18 @@ export default class Category extends PureComponent {
     );
   }
 }
+
+
+const mapStateToProps = (state)=>{
+  return {
+    category : state.category,
+  }
+}
+
+// const mapDispachToProps = (dispatch)=>{
+//   return {
+//     change : (value)=> dispatch({type:"change",value:value})
+//   }
+// }
+
+export default connect(mapStateToProps) (Category);

@@ -3,6 +3,8 @@ import brandIcon from "../../images/Brand-icon.png";
 import Action from "./Action";
 import { gql } from "@apollo/client";
 import { Query } from "@apollo/client/react/components";
+import { connect } from 'react-redux';
+
 
 const GET_CATEGORIES = gql`
   query {
@@ -15,21 +17,23 @@ const GET_CATEGORIES = gql`
 export class Header extends PureComponent {
   render() {
     return (
-      <nav>
-        {/* 
-         
-          <li>men</li>
-          <li>kids</li>
-         */}
+      <nav> 
         <ul>
           <Query query={GET_CATEGORIES}>
+          
             {({ loading, error, data }) => {
               if (error) return <h1>Error...</h1>;
               if (loading || !data) return <h1>Loading...</h1>;
               return data.categories.map((elem) => (
-                <li key={elem.name}>
+                <li  key={elem.name}>
+                <button value={elem.name} onClick={(e)=>{this.props.change(e.target.value)}}>
+                 
                   {elem.name}
+                  {console.log(this.props.category)}
+                
+                </button>
                 </li>
+               
               ));
             }}
           </Query>
@@ -41,4 +45,16 @@ export class Header extends PureComponent {
   }
 }
 
-export default Header;
+const mapStateToProps = (state)=>{
+  return {
+    category : state.category,
+  }
+}
+
+const mapDispachToProps = (dispatch)=>{
+  return {
+    change : (value)=> dispatch({type:"change",value:value})
+  }
+}
+
+export default connect(mapStateToProps,mapDispachToProps) (Header);
