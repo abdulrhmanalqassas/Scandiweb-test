@@ -2,6 +2,9 @@ import React, { PureComponent } from "react";
 import Common from "../../images/Common.png";
 import { gql } from "@apollo/client";
 import { Query } from "@apollo/client/react/components";
+import { Link } from "react-router-dom";
+import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 //prop
 // img
 // name
@@ -12,11 +15,9 @@ function curincy(curincy, label = "USD") {
   return curincy.currency.label === label;
 }
 
-function productPrice(data,lapel ){
-  let price = data.product.prices
-  .filter((price) => curincy(price,lapel))[0]
- return (`${price.currency.symbol}${price.amount}`)
-   
+function productPrice(data, lapel) {
+  let price = data.product.prices.filter((price) => curincy(price, lapel))[0];
+  return `${price.currency.symbol}${price.amount}`;
 }
 
 const GET_PRICE = gql`
@@ -33,10 +34,17 @@ const GET_PRICE = gql`
   }
 `;
 
-export default class Card extends PureComponent {
+class CardN extends PureComponent {
   render() {
     return (
-      <div className="category-card">
+      // <Link to={{ pathname: "/pdp",state: {id:this.props.id}}}>
+
+      <div
+        onClick={() =>
+          this.props.navigate("/pdp", { state: { id: this.props.id } })
+        }
+        className="category-card"
+      >
         <div>
           <img
             className="category-card-img"
@@ -45,16 +53,34 @@ export default class Card extends PureComponent {
           />
           <img alt="card-icon" className="category-card-icon" src={Common} />
         </div>
-
+        {console.log("this.props", this.props)}
         <h2>{this.props.titel}</h2>
         <Query query={GET_PRICE} variables={{ id: this.props.id }}>
           {({ loading, error, data }) => {
             if (error) return <h1>Error...</h1>;
             if (loading || !data) return <h1>Loading...</h1>;
-            return <h1>{productPrice(data,"JPY")}</h1>;
+            return <h1>{productPrice(data, "JPY")}</h1>;
           }}
         </Query>
       </div>
+      // </Link>
     );
   }
 }
+
+export function Card(props) {
+  const navigate = useNavigate();
+  return (
+    <CardN
+      // key={props.key}
+      // id={props.id}
+      // titel={props.name}
+      // inStock={props.inStock}
+      // gallery={props.gallery}
+      {...props}
+      navigate={navigate}
+    ></CardN>
+  );
+}
+
+export default Card;

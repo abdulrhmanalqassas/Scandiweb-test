@@ -3,8 +3,7 @@ import brandIcon from "../../images/Brand-icon.png";
 import Action from "./Action";
 import { gql } from "@apollo/client";
 import { Query } from "@apollo/client/react/components";
-import { connect } from 'react-redux';
-
+import { connect } from "react-redux";
 
 const GET_CATEGORIES = gql`
   query {
@@ -17,23 +16,24 @@ const GET_CATEGORIES = gql`
 export class Header extends PureComponent {
   render() {
     return (
-      <nav> 
+      <nav>
         <ul>
           <Query query={GET_CATEGORIES}>
-          
             {({ loading, error, data }) => {
               if (error) return <h1>Error...</h1>;
               if (loading || !data) return <h1>Loading...</h1>;
               return data.categories.map((elem) => (
-                <li  key={elem.name}>
-                <button value={elem.name} onClick={(e)=>{this.props.change(e.target.value)}}>
-                 
+                // {}
+                <li
+                  className={elem.name === this.props.category && "active"}
+                  key={elem.name}
+                  onClick={(e) => {
+                    this.props.change(e.target.innerText);
+                  }}
+                >
                   {elem.name}
                   {console.log(this.props.category)}
-                
-                </button>
                 </li>
-               
               ));
             }}
           </Query>
@@ -45,16 +45,16 @@ export class Header extends PureComponent {
   }
 }
 
-const mapStateToProps = (state)=>{
+const mapStateToProps = (state) => {
   return {
-    category : state.category,
-  }
-}
+    category: state.category,
+  };
+};
 
-const mapDispachToProps = (dispatch)=>{
+const mapDispachToProps = (dispatch) => {
   return {
-    change : (value)=> dispatch({type:"change",value:value})
-  }
-}
+    change: (value) => dispatch({ type: "change", value: value }),
+  };
+};
 
-export default connect(mapStateToProps,mapDispachToProps) (Header);
+export default connect(mapStateToProps, mapDispachToProps)(Header);

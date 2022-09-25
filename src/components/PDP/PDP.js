@@ -1,8 +1,9 @@
-import React, { PureComponent } from "react";
+import React, { PureComponent  } from "react";
 import { gql } from "@apollo/client";
 import { Query } from "@apollo/client/react/components";
 import parse from "html-react-parser";
-import Attributes from "./Attribute"
+import Attributes from "./Attribute";
+import { useLocation } from "react-router-dom";
 
 const GET_INFO = gql`
   query info($id: String!) {
@@ -23,19 +24,22 @@ const GET_INFO = gql`
   }
 `;
 
-export default class PDP extends PureComponent {
+ class PDPN extends PureComponent {
+ 
   state = {
     mainImg: 0,
   };
   render() {
     return (
-      <Query query={GET_INFO} variables={{ id: "ps-5" }}>
+      
+      <Query query={GET_INFO} variables={{ id: this.props.location.state.id }}>
         {({ loading, error, data }) => {
           if (error) return <h1>Error...</h1>;
           if (loading || !data) return <h1>Loading...</h1>;
           let product = data.product;
           return (
             <section className="PDP">
+             
               <div className="row">
                 {product.gallery.map((img, i) => {
                   return (
@@ -51,6 +55,7 @@ export default class PDP extends PureComponent {
                   );
                 })}
               </div>
+             
               <div className="main-img">
                 <img
                   width={"610px"}
@@ -59,11 +64,10 @@ export default class PDP extends PureComponent {
                   alt={"any"}
                 />
               </div>
-
+{console.log(this.props)}
               <div className="info">
-                <h1>{product.brand}</h1>
-                <h4>{product.name}</h4>
-                <Attributes attributes={product.attributes} />
+                
+                <Attributes parent={"PDP"} product={product} />
                   <div className="info-butt">
                  <h1>ADD TO CART</h1> 
                   </div>
@@ -75,4 +79,11 @@ export default class PDP extends PureComponent {
       </Query>
     );
   }
+}
+
+export default function PDP(props){
+  const location =  useLocation() 
+  return (<PDPN {...props} location={location} >
+
+  </PDPN> )
 }

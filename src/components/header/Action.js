@@ -1,8 +1,8 @@
 import { PureComponent } from "react";
 import { gql } from "@apollo/client";
 import cartIcon from "../../images/cart.png";
-import { Query} from "@apollo/client/react/components";
-
+import { Query } from "@apollo/client/react/components";
+import { Link } from "react-router-dom";
 
 const GET_CURRENCIES = gql`
   query {
@@ -18,8 +18,10 @@ export class Action extends PureComponent {
     return (
       <div className="nav-action">
         <div className="dropdown">
-          <div className="dropbtn">$<div className="dropdown-arrow"></div></div>
-          
+          <div className="dropbtn">
+            $<div className="dropdown-arrow"></div>
+          </div>
+
           <div className="dropdown-content">
             <Query query={GET_CURRENCIES}>
               {({ loading, error, data }) => {
@@ -37,10 +39,14 @@ export class Action extends PureComponent {
               }}
             </Query>
           </div>
-
         </div>
-        
-       <div  className="nav-cart"><img alt="cart" src={cartIcon}></img></div> 
+        {
+          <Link to="/cart">
+            <div  className="nav-cart">
+              <img alt="cart" src={cartIcon}></img>
+            </div>
+          </Link>
+        }
       </div>
     );
   }
