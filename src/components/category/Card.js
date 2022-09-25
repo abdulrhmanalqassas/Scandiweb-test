@@ -2,8 +2,7 @@ import React, { PureComponent } from "react";
 import Common from "../../images/Common.png";
 import { gql } from "@apollo/client";
 import { Query } from "@apollo/client/react/components";
-import { Link } from "react-router-dom";
-import { Navigate } from "react-router-dom";
+
 import { useNavigate } from "react-router-dom";
 //prop
 // img
