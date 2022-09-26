@@ -3,6 +3,7 @@ import { gql } from "@apollo/client";
 import cartIcon from "../../images/cart.png";
 import { Query } from "@apollo/client/react/components";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 const GET_CURRENCIES = gql`
   query {
@@ -31,7 +32,10 @@ export class Action extends PureComponent {
                 const { currencies } = data;
 
                 return currencies.map((elem) => (
-                  <div key={elem.label}>
+                  <div onClick={()=>{
+                    this.props.switchCurincy(elem.label)
+                    
+                  }} key={elem.label}>
                     {elem.symbol}
                     {elem.label}
                   </div>
@@ -52,4 +56,16 @@ export class Action extends PureComponent {
   }
 }
 
-export default Action;
+const mapStateToProps = (state) => {
+  return {
+    curincy: state.curincyReducer.curincy,
+  };
+};
+
+const mapDispachToProps = (dispatch) => {
+  return {
+    switchCurincy: (value) => dispatch({ type: "switchCurincy", value: value }),
+  };
+};
+
+export default connect(mapStateToProps, mapDispachToProps)(Action);

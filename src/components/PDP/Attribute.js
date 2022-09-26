@@ -51,8 +51,8 @@ export default class Attributes extends PureComponent {
 
         {this.props.parent === "PDP" && (
           <>
-            <h1 className="attribute"> PRICE:</h1>
-            <h1 className="attribute">50</h1>
+            <h3 className="attribute"> PRICE:</h3>
+            <h3 className="attribute">50</h3>
           </>
         )}
       </div>

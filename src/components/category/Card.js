@@ -2,7 +2,7 @@ import React, { PureComponent } from "react";
 import Common from "../../images/Common.png";
 import { gql } from "@apollo/client";
 import { Query } from "@apollo/client/react/components";
-
+import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
 //prop
 // img
@@ -58,7 +58,8 @@ class CardN extends PureComponent {
           {({ loading, error, data }) => {
             if (error) return <h1>Error...</h1>;
             if (loading || !data) return <h1>Loading...</h1>;
-            return <h1>{productPrice(data, "JPY")}</h1>;
+            return <h1>{productPrice(data, this.props.curincy)}</h1>;
+            {console.log(this.props.curincy)}
           }}
         </Query>
       </div>
@@ -81,5 +82,10 @@ export function Card(props) {
     ></CardN>
   );
 }
+const mapStateToProps = (state) => {
+  return {
+    curincy: state.curincyReducer.curincy,
+  };
+};
 
-export default Card;
+export default connect(mapStateToProps)(Card);

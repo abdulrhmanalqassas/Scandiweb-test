@@ -379,3 +379,11 @@ gap: 1.875rem;
   z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
   cursor: pointer; /* Add a pointer on hover */
 }
+.product-description>div>ul{
+  display: flex;
+  flex-direction: column;
+  
+}
+.product-description>div>ul>li{
+  width: 100%;
+}

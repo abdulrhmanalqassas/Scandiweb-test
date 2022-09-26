@@ -21,7 +21,7 @@ const GET_PRODUCTS = gql`
 export class Category extends PureComponent {
   render() {
     return (
-      <Query query={GET_PRODUCTS} variables={{ title: this.props.category }}>
+      <Query query={GET_PRODUCTS} variables={{ title: this.props.category}}>
         {({ loading, error, data }) => {
           if (error) return <h1>Error...</h1>;
           if (loading || !data) return <h1>Loading...</h1>;
@@ -52,7 +52,7 @@ export class Category extends PureComponent {
 
 const mapStateToProps = (state) => {
   return {
-    category: state.category,
+    category: state.categoryReducer.category,
   };
 };
 

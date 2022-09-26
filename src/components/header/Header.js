@@ -47,7 +47,7 @@ export class Header extends PureComponent {
 
 const mapStateToProps = (state) => {
   return {
-    category: state.category,
+    category: state.categoryReducer.category,
   };
 };
 
