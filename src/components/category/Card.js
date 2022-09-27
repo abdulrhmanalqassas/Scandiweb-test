@@ -6,7 +6,7 @@ import Price from "../price/Price";
 class CardN extends PureComponent {
   render() {
     return (
-      // <Link to={{ pathname: "/pdp",state: {id:this.props.id}}}>
+     
 
       <div
         onClick={() =>

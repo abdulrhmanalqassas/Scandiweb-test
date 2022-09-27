@@ -8,16 +8,18 @@ import { Routes , Route} from 'react-router-dom';
 import { createStore } from 'redux';
 import {combineReducers} from "redux";
 import categoryReducer from './reducers/categoryReducer';
-import curincyReducer from './reducers/curincyReducer'
+import curincyReducer from './reducers/curincyReducer';
+import cartReducer from './reducers/cartReducer';
 import { Provider } from 'react-redux';
 import { from } from '@apollo/client';
 
 // let my = c
-const rootReducer = combineReducers({curincyReducer, categoryReducer})
+const rootReducer = combineReducers({curincyReducer, categoryReducer,cartReducer})
 
 const store = createStore( rootReducer );
 export class App extends PureComponent {
   render() {
+
     
     return (
       <Provider store = {store}>

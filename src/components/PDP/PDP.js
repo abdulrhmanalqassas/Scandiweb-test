@@ -4,7 +4,7 @@ import { Query } from "@apollo/client/react/components";
 import parse from "html-react-parser";
 import Attributes from "./Attribute";
 import { useLocation } from "react-router-dom";
-
+import CartButt from "../cart/CartButt";
 const GET_INFO = gql`
   query info($id: String!) {
     product(id: $id) {
@@ -68,9 +68,8 @@ class PDPN extends PureComponent {
                   parent={"PDP"}
                   product={product}
                 />
-                <div className="info-butt">
-                  <h1>ADD TO CART</h1>
-                </div>
+               
+                <CartButt id={this.props.location.state.id}></CartButt>
                 <div className="product-description">
                   {parse(product.description)}
                 </div>

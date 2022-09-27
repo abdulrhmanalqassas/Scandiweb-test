@@ -1,6 +1,8 @@
 import React, { PureComponent } from "react";
 import Attributes from "../PDP/Attribute";
 import Common from "../../images/Common.png";
+import { connect } from "react-redux";
+
 let product = {
   "__typename": "Product",
   "brand": "Sony",
@@ -71,7 +73,7 @@ let product = {
   ]
 }
 
-export default class Cart extends PureComponent {
+export  class Cart extends PureComponent {
   state = {
     quantity: 1,
   };
@@ -108,6 +110,7 @@ export default class Cart extends PureComponent {
           <div className="cart-control-img">
             <img alt="product in cart" src={Common} />
             <div className="cart-control-img-butt">
+              {console.log("idddddddddd>>>>>>",this.props.ids)}
               <div
                 className="prev"
                 onClick={() => {
@@ -132,3 +135,14 @@ export default class Cart extends PureComponent {
     );
   }
 }
+
+
+const mapStateToProps = (state) => {
+    return {
+     ids: state.cartReducer.ids,
+    };
+  };
+
+
+
+export default connect(mapStateToProps)(Cart);

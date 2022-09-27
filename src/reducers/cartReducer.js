@@ -1,11 +1,11 @@
- const curincyReducer = (state = { curincy :"USD"},action) => {
+ const cartReducer = (state = { ids :[]},action) => {
     const newState = {...state};
 
-    if (action.type === "switchCurincy" ) {
-        newState.curincy = action.value
+    if (action.type === "add" ) {
+        newState.ids.push(action.value)
     }
 
     return newState   
 }
 
-export default curincyReducer ;
+export default cartReducer ;
