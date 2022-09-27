@@ -1,37 +1,16 @@
 import React, { PureComponent } from "react";
 import Common from "../../images/Common.png";
-import { gql } from "@apollo/client";
-import { Query } from "@apollo/client/react/components";
+
 import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Price from "../price/Price"
 //prop
 // img
 // name
 // price
 // curincy
 
-function curincy(curincy, label = "USD") {
-  return curincy.currency.label === label;
-}
 
-function productPrice(data, lapel) {
-  let price = data.product.prices.filter((price) => curincy(price, lapel))[0];
-  return `${price.currency.symbol}${price.amount}`;
-}
-
-const GET_PRICE = gql`
-  query Price($id: String!) {
-    product(id: $id) {
-      prices {
-        currency {
-          label
-          symbol
-        }
-        amount
-      }
-    }
-  }
-`;
 
 class CardN extends PureComponent {
   render() {
@@ -54,14 +33,7 @@ class CardN extends PureComponent {
         </div>
         {console.log("this.props", this.props)}
         <h2>{this.props.titel}</h2>
-        <Query query={GET_PRICE} variables={{ id: this.props.id }}>
-          {({ loading, error, data }) => {
-            if (error) return <h1>Error...</h1>;
-            if (loading || !data) return <h1>Loading...</h1>;
-            return <h1>{productPrice(data, this.props.curincy)}</h1>;
-            {console.log(this.props.curincy)}
-          }}
-        </Query>
+        <Price id ={this.props.id}></Price>
       </div>
       // </Link>
     );
@@ -82,10 +54,5 @@ export function Card(props) {
     ></CardN>
   );
 }
-const mapStateToProps = (state) => {
-  return {
-    curincy: state.curincyReducer.curincy,
-  };
-};
 
-export default connect(mapStateToProps)(Card);
+export default Card;

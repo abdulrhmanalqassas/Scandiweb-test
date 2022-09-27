@@ -1,4 +1,5 @@
 import React, { PureComponent } from "react";
+import Price from "../price/Price";
 
 export default class Attributes extends PureComponent {
   state = {
@@ -13,7 +14,6 @@ export default class Attributes extends PureComponent {
         {this.props.parent === "Cart" && (
           <h1 className="attribute">props.quantity*product.price </h1>
         )}
-        {console.log("atttrtrrrr", this.props.product.attributes)}
         {this.props.product.attributes.map((attribute) => {
           return (
             <div key ={attribute.name}>
@@ -52,7 +52,8 @@ export default class Attributes extends PureComponent {
         {this.props.parent === "PDP" && (
           <>
             <h3 className="attribute"> PRICE:</h3>
-            <h3 className="attribute">50</h3>
+            
+            <Price id = {this.props.id} ></Price>
           </>
         )}
       </div>

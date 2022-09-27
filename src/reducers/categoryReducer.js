@@ -1,4 +1,3 @@
- 
  const categoryReducer = (state = { category :"all"},action) => {
     const newState = {...state};
 

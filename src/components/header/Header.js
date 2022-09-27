@@ -4,6 +4,7 @@ import Action from "./Action";
 import { gql } from "@apollo/client";
 import { Query } from "@apollo/client/react/components";
 import { connect } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const GET_CATEGORIES = gql`
   query {
@@ -13,11 +14,11 @@ const GET_CATEGORIES = gql`
   }
 `;
 
-export class Header extends PureComponent {
+export class HeaderN extends PureComponent {
   render() {
     return (
       <nav>
-        <ul>
+        <ul onClick={()=>this.props.navigate("/")}>
           <Query query={GET_CATEGORIES}>
             {({ loading, error, data }) => {
               if (error) return <h1>Error...</h1>;
@@ -32,7 +33,7 @@ export class Header extends PureComponent {
                   }}
                 >
                   {elem.name}
-                  {console.log(this.props.category)}
+                 
                 </li>
               ));
             }}
@@ -57,4 +58,18 @@ const mapDispachToProps = (dispatch) => {
   };
 };
 
+export function Header(props) {
+  const navigate = useNavigate();
+  return (
+    <HeaderN
+      // key={props.key}
+      // id={props.id}
+      // titel={props.name}
+      // inStock={props.inStock}
+      // gallery={props.gallery}
+      {...props}
+      navigate={navigate}
+    ></HeaderN>
+  );
+}
 export default connect(mapStateToProps, mapDispachToProps)(Header);
