@@ -8,7 +8,7 @@ export default class Attributes extends PureComponent {
 
   render() {
     return (
-      < div  style={{}} key={this.props.product.name + Math.random()}>
+      <div style={{}} key={this.props.product.name + Math.random()}>
         <h1>{this.props.product.brand}</h1>
         <h4>{this.props.product.name}</h4>
         {this.props.parent === "Cart" && (
@@ -16,14 +16,13 @@ export default class Attributes extends PureComponent {
         )}
         {this.props.product.attributes.map((attribute) => {
           return (
-            <div key ={attribute.name}>
-              <h1  className="attribute"> {attribute.name} :</h1>
+            <div key={attribute.name}>
+              <h1 className="attribute"> {attribute.name} :</h1>
               <fieldset className="swatch-picker">
                 {attribute.items.map((item) => {
                   return (
-                   
                     <label
-                    key={item.displayValue}
+                      key={item.displayValue}
                       style={{
                         margin: !(attribute.name === "Color") && "5px 20px",
                       }}
@@ -52,8 +51,8 @@ export default class Attributes extends PureComponent {
         {this.props.parent === "PDP" && (
           <>
             <h3 className="attribute"> PRICE:</h3>
-            
-            <Price id = {this.props.id} ></Price>
+
+            <Price id={this.props.id}></Price>
           </>
         )}
       </div>

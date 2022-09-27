@@ -28,14 +28,14 @@ export class Action extends PureComponent {
               {({ loading, error, data }) => {
                 if (error) return <h1>Error...</h1>;
                 if (loading || !data) return <h1>Loading...</h1>;
-               
                 const { currencies } = data;
-
                 return currencies.map((elem) => (
-                  <div onClick={()=>{
-                    this.props.switchCurincy(elem.label)
-                    
-                  }} key={elem.label}>
+                  <div
+                    onClick={() => {
+                      this.props.switchCurincy(elem.label);
+                    }}
+                    key={elem.label}
+                  >
                     {elem.symbol}
                     {elem.label}
                   </div>
@@ -46,7 +46,7 @@ export class Action extends PureComponent {
         </div>
         {
           <Link to="/cart">
-            <div  className="nav-cart">
+            <div className="nav-cart">
               <img alt="cart" src={cartIcon}></img>
             </div>
           </Link>

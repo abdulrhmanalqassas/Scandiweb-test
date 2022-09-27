@@ -61,15 +61,18 @@ class PDPN extends PureComponent {
                   alt={"any"}
                 />
               </div>
-              
+
               <div className="info">
-                <Attributes id= {this.props.location.state.id} parent={"PDP"} product={product} />
+                <Attributes
+                  id={this.props.location.state.id}
+                  parent={"PDP"}
+                  product={product}
+                />
                 <div className="info-butt">
                   <h1>ADD TO CART</h1>
                 </div>
                 <div className="product-description">
                   {parse(product.description)}
-                 
                 </div>
               </div>
             </section>

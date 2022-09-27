@@ -18,7 +18,7 @@ export class HeaderN extends PureComponent {
   render() {
     return (
       <nav>
-        <ul onClick={()=>this.props.navigate("/")}>
+        <ul onClick={() => this.props.navigate("/")}>
           <Query query={GET_CATEGORIES}>
             {({ loading, error, data }) => {
               if (error) return <h1>Error...</h1>;
@@ -33,7 +33,6 @@ export class HeaderN extends PureComponent {
                   }}
                 >
                   {elem.name}
-                 
                 </li>
               ));
             }}

@@ -1,16 +1,7 @@
 import React, { PureComponent } from "react";
 import Common from "../../images/Common.png";
-
-import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import Price from "../price/Price"
-//prop
-// img
-// name
-// price
-// curincy
-
-
+import Price from "../price/Price";
 
 class CardN extends PureComponent {
   render() {
@@ -33,7 +24,7 @@ class CardN extends PureComponent {
         </div>
         {console.log("this.props", this.props)}
         <h2>{this.props.titel}</h2>
-        <Price id ={this.props.id}></Price>
+        <Price id={this.props.id}></Price>
       </div>
       // </Link>
     );
