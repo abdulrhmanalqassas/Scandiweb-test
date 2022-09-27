@@ -1,4 +1,3 @@
- 
  const curincyReducer = (state = { curincy :"USD"},action) => {
     const newState = {...state};
 

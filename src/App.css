@@ -1,4 +1,15 @@
+header{
+  display: block;
+  position:fixed ;
+ z-index: 99;
+  top: 0;
+  width: 100%;
+ background-color: #fff;
+}
+
+
 nav {
+  
   height: 5rem;
   display: flex;
   flex-wrap: nowrap;

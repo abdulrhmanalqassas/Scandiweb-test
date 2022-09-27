@@ -17,30 +17,32 @@ const GET_CATEGORIES = gql`
 export class HeaderN extends PureComponent {
   render() {
     return (
-      <nav>
-        <ul onClick={() => this.props.navigate("/")}>
-          <Query query={GET_CATEGORIES}>
-            {({ loading, error, data }) => {
-              if (error) return <h1>Error...</h1>;
-              if (loading || !data) return <h1>Loading...</h1>;
-              return data.categories.map((elem) => (
-                // {}
-                <li
-                  className={elem.name === this.props.category && "active"}
-                  key={elem.name}
-                  onClick={(e) => {
-                    this.props.change(e.target.innerText);
-                  }}
-                >
-                  {elem.name}
-                </li>
-              ));
-            }}
-          </Query>
-        </ul>
-        <img src={brandIcon} className="nav-icon" alt="icon" />
-        <Action />
-      </nav>
+      <header>
+        <nav>
+          <ul onClick={() => this.props.navigate("/")}>
+            <Query query={GET_CATEGORIES}>
+              {({ loading, error, data }) => {
+                if (error) return <h1>Error...</h1>;
+                if (loading || !data) return <h1>Loading...</h1>;
+                return data.categories.map((elem) => (
+                  // {}
+                  <li
+                    className={elem.name === this.props.category && "active"}
+                    key={elem.name}
+                    onClick={(e) => {
+                      this.props.change(e.target.innerText);
+                    }}
+                  >
+                    {elem.name}
+                  </li>
+                ));
+              }}
+            </Query>
+          </ul>
+          <img src={brandIcon} className="nav-icon" alt="icon" />
+          <Action />
+        </nav>
+      </header>
     );
   }
 }

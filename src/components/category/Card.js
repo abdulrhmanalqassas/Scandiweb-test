@@ -22,7 +22,7 @@ class CardN extends PureComponent {
           />
           <img alt="card-icon" className="category-card-icon" src={Common} />
         </div>
-        {console.log("this.props", this.props)}
+        {/* {console.log("this.props", this.props)} */}
         <h2>{this.props.titel}</h2>
         <Price id={this.props.id}></Price>
       </div>

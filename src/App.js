@@ -23,10 +23,13 @@ export class App extends PureComponent {
       <Provider store = {store}>
        <Header/>
       <Routes>
+       
         {console.log(store.getState())}
        <Route path="/" element={ < Category/>} />
        <Route path="/pdp" element={ < PDP/>} />
        <Route path="/cart" element={ < Cart/>} />
+      
+      
        
       </Routes>
       </Provider>
