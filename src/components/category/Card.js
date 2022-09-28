@@ -6,21 +6,24 @@ import Price from "../price/Price";
 class CardN extends PureComponent {
   render() {
     return (
-     
-
       <div
         onClick={() =>
-          this.props.navigate("/pdp", { state: { id: this.props.id } })
+          this.props.navigate("/pdp", { state: { id: this.props.id ,inStock : this.props.inStock} })
         }
-        className="category-card"
+        className={this.props.inStock? "category-card":"category-card " }
       >
-        <div>
+        <div></div>
+        <div className="category-card-div" >
+         {/* {this.props.inStock &&  <div className={ "card-overlay"} >
+          <p>  </p>
+          </div>} */}
           <img
-            className={this.props.inStock? "category-card-img" :"category-card-img overLay" }
+            className= {this.props.inStock? " category-card-img" : " category-card-img overlay"   }
             src={this.props.gallery[0]}
             alt={this.props.titel}
           />
-          <img alt="card-icon" className="category-card-icon" src={Common} />
+          { !this.props.inStock && <p className="overlay-text"  >OUT OF STOCK</p>}
+         { !this.props.inStock && <img alt="card-icon" className="category-card-icon" src={Common} />}
         </div>
         {/* {console.log("this.props", this.props)} */}
         <h2>{this.props.titel}</h2>

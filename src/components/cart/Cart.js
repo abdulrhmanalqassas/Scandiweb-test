@@ -2,6 +2,26 @@ import React, { PureComponent } from "react";
 import Attributes from "../PDP/Attribute";
 import Common from "../../images/Common.png";
 import { connect } from "react-redux";
+import { Query } from "@apollo/client/react/components";
+import { gql } from "@apollo/client";
+const GET_INFO = gql`
+  query info($id: String!) {
+    product(id: $id) {
+      brand
+      name
+      description
+      gallery
+      attributes {
+        name
+        items {
+          displayValue
+          value
+          id
+        }
+      }
+    }
+  }
+`;
 
 let product = {
   "__typename": "Product",
@@ -72,19 +92,29 @@ let product = {
     }
   ]
 }
+const t =(id) => <Query query={GET_INFO} variables={{ id: id }}>
+{({ loading, error, data }) => {
+  if (error) return <h1>Error...</h1>;
+  if (loading || !data) return <h1>Loading...</h1>;
+  let product = data.product;
+  return (<Attributes product={product} />)}}
+</Query>
+
+
 
 export  class Cart extends PureComponent {
   state = {
     quantity: 1,
   };
+ 
   render() {
     return (
       <section className="cart">
         <div className="info">
+         
+         
           
-          
-          <Attributes product={product} />
-          
+          {t(Object.keys(this.props.ids)[0])}
         </div>
         <div className="cart-control">
           <div className="quantity">
