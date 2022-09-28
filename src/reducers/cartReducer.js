@@ -1,8 +1,11 @@
- const cartReducer = (state = { ids :[]},action) => {
+ const cartReducer = (state = { ids :{}},action) => {
     const newState = {...state};
 
     if (action.type === "add" ) {
-        newState.ids.push(action.value)
+        newState.ids[action.value] = 1 
+    }
+    else if (action.type === "delete"){
+        delete newState.ids[action.value]
     }
 
     return newState   

@@ -13,6 +13,19 @@ export  class CartButt extends PureComponent{
     }
    
 }
+
+export  class DeleteCartButt extends PureComponent{
+  render(){
+      return(
+          <div onClick={() => {
+              this.props.delete(this.props.id);
+            }} className="info-butt">
+                    <h1>DELETE FROM CART</h1>
+          </div>
+      )
+  }
+ 
+}
 const mapStateToProps = (state) => {
     return {
      ids: state.cartReducer.ids,
@@ -21,7 +34,9 @@ const mapStateToProps = (state) => {
   const mapDispachToProps = (dispatch) => {
     return {
       add: (value) => dispatch({ type: "add", value: value }),
+      delete: (value) => dispatch({ type: "delete", value: value }),
     };
   };
 
 export default connect(mapStateToProps,mapDispachToProps)(CartButt);
+export const DeleteButt = connect(mapStateToProps,mapDispachToProps)(DeleteCartButt)

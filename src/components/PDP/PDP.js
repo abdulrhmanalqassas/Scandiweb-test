@@ -5,6 +5,7 @@ import parse from "html-react-parser";
 import Attributes from "./Attribute";
 import { useLocation } from "react-router-dom";
 import CartButt from "../cart/CartButt";
+import { DeleteButt } from "../cart/CartButt";
 const GET_INFO = gql`
   query info($id: String!) {
     product(id: $id) {
@@ -70,6 +71,7 @@ class PDPN extends PureComponent {
                 />
                
                 <CartButt id={this.props.location.state.id}></CartButt>
+                <DeleteButt id={this.props.location.state.id} ></DeleteButt>
                 <div className="product-description">
                   {parse(product.description)}
                 </div>

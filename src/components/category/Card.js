@@ -16,7 +16,7 @@ class CardN extends PureComponent {
       >
         <div>
           <img
-            className="category-card-img"
+            className={this.props.inStock? "category-card-img" :"category-card-img overLay" }
             src={this.props.gallery[0]}
             alt={this.props.titel}
           />

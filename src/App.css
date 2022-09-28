@@ -191,7 +191,7 @@ gap: 1.875rem;
   color: #1d1f22;
 }
 .category-card:hover {
-  filter: drop-shadow(0rem 0.25rem 2.1875rem rgba(168, 172, 176, 0.19));
+  filter: drop-shadow(0rem 0.25rem 2.1875rem rgba(142, 146, 150, 0.19));
 }
 
 .category-card:hover .category-card-icon {
@@ -397,4 +397,9 @@ gap: 1.875rem;
 }
 .product-description>div>ul>li{
   width: 100%;
+}
+overLay{
+  background-color: #000;
+  z-index: 55;
+  position: relative;
 }
