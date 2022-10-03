@@ -10,11 +10,12 @@ import {combineReducers} from "redux";
 import categoryReducer from './reducers/categoryReducer';
 import curincyReducer from './reducers/curincyReducer';
 import cartReducer from './reducers/cartReducer';
+import attributeReducer from './reducers/attributeReducer';
 import { Provider } from 'react-redux';
 import { from } from '@apollo/client';
 
 // let my = c
-const rootReducer = combineReducers({curincyReducer, categoryReducer,cartReducer})
+const rootReducer = combineReducers({curincyReducer, categoryReducer,cartReducer,attributeReducer})
 
 const store = createStore( rootReducer );
 export class App extends PureComponent {

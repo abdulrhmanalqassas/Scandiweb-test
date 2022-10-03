@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import Price from "../price/Price";
-
 import { connect } from "react-redux";
+
 
 export  class Attributes extends PureComponent {
   state = {
@@ -34,11 +34,20 @@ export  class Attributes extends PureComponent {
                       <input
                         name={attribute.name}
                         type="radio"
+                        // defaultChecked={
+                        //   Object.keys(this.props.ids).includes(this.props.id)===true?
+                        //   Object.keys(this.props.ids[this.props.id].Attributes).includes(attribute.name)?this.ids.attribute[attribute.name]===item.displayValue:
+                        //   false:false
+                        // }
                         value={item.displayValue}
                         onClick={() => {
-                          this.props.AddAttribute({id :this.props.id ,name:attribute.name,displayValue : item.displayValue});
+                         
+                            this.props.AddAttribute({id :this.props.id ,name:attribute.name,displayValue : item.displayValue});
+                         
+                         
+                          
                         }}
-                        onChange={()=>this.props.AddAttribute( {id :this.props.id ,name:attribute.name,displayValue : item.displayValue})}
+                        // onChange={()=>this.props.AddAttribute( {id :this.props.id ,name:attribute.name,displayValue : item.displayValue})}
                       />
                       <span
                         style={{
@@ -63,6 +72,7 @@ export  class Attributes extends PureComponent {
             <Price id={this.props.id}></Price>
           </>
         )}
+        {console.log("this.props.ids",this.props.ids)}
       </div>
     );
   }
@@ -70,15 +80,13 @@ export  class Attributes extends PureComponent {
 
 const mapStateToProps = (state) => {
   return {
-   ids: state.cartReducer.ids,
+   ids: state.attributeReducer.ids,
   };
 };
 
 const mapDispachToProps = (dispatch) => {
   return {
-    add: (value) => dispatch({ type: "add", value: value }),
-    delete: (value) => dispatch({ type: "delete", value: value }),
-    AddAttribute : (value) => dispatch({ type: " AddAttribute", value: value }),
+    AddAttribute : (value) => dispatch({ type: "AddAttribute", value: value }),
   };
 };
 

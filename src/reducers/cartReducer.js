@@ -6,8 +6,6 @@
     }
     else if (action.type === "delete"){
         delete newState.ids[action.value]
-    }else if (action.type === "AddAttribute"){
-       (action.value) 
     }
 
     return newState   

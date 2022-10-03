@@ -23,82 +23,14 @@ const GET_INFO = gql`
   }
 `;
 
-let product = {
-  "__typename": "Product",
-  "brand": "Sony",
-  "name": "PlayStation 5",
-  "description": "<p>A good gaming console. Plays games of PS4! Enjoy if you can buy it mwahahahaha</p>",
-  "gallery": [
-    "https://images-na.ssl-images-amazon.com/images/I/510VSJ9mWDL._SL1262_.jpg",
-    "https://images-na.ssl-images-amazon.com/images/I/610%2B69ZsKCL._SL1500_.jpg",
-    "https://images-na.ssl-images-amazon.com/images/I/51iPoFwQT3L._SL1230_.jpg",
-    "https://images-na.ssl-images-amazon.com/images/I/61qbqFcvoNL._SL1500_.jpg",
-    "https://images-na.ssl-images-amazon.com/images/I/51HCjA3rqYL._SL1230_.jpg"
-  ],
-  "attributes": [
-    {
-      "__typename": "AttributeSet",
-      "name": "Color",
-      "items": [
-        {
-          "__typename": "Attribute",
-          "displayValue": "Green",
-          "value": "#44FF03",
-          "id": "Green"
-        },
-        {
-          "__typename": "Attribute",
-          "displayValue": "Cyan",
-          "value": "#03FFF7",
-          "id": "Cyan"
-        },
-        {
-          "__typename": "Attribute",
-          "displayValue": "Blue",
-          "value": "#030BFF",
-          "id": "Blue"
-        },
-        {
-          "__typename": "Attribute",
-          "displayValue": "Black",
-          "value": "#000000",
-          "id": "Black"
-        },
-        {
-          "__typename": "Attribute",
-          "displayValue": "White",
-          "value": "#FFFFFF",
-          "id": "White"
-        }
-      ]
-    },
-    {
-      "__typename": "AttributeSet",
-      "name": "Capacity",
-      "items": [
-        {
-          "__typename": "Attribute",
-          "displayValue": "512G",
-          "value": "512G",
-          "id": "512G"
-        },
-        {
-          "__typename": "Attribute",
-          "displayValue": "1T",
-          "value": "1T",
-          "id": "1T"
-        }
-      ]
-    }
-  ]
-} 
+
 
 const t =(id) => <Query query={GET_INFO} variables={{ id: id }}>
 {({ loading, error, data }) => {
   if (error) return <h1>Error...</h1>;
   if (loading || !data) return <h1>Loading...</h1>;
   let product = data.product;
-  return (<Attributes product={product} />)}}
+  return (<Attributes product={product}  id={id}/>)}}
 </Query>
 
 
@@ -115,7 +47,7 @@ export  class Cart extends PureComponent {
          
          
           
-          {t(Object.keys(this.props.ids)[0])}
+          {t(Object.keys(this.props.cartIds)[0])}
         </div>
         <div className="cart-control">
           <div className="quantity">
@@ -170,7 +102,8 @@ export  class Cart extends PureComponent {
 
 const mapStateToProps = (state) => {
     return {
-     ids: state.cartReducer.ids,
+     cartIds: state.cartReducer.ids,
+     Attributes:state.attributeReducer.ids,
     };
   };
 
