@@ -1,15 +1,19 @@
 import React, { PureComponent } from "react";
 import Price from "../price/Price";
 
-export default class Attributes extends PureComponent {
+import { connect } from "react-redux";
+
+export  class Attributes extends PureComponent {
   state = {
     mainImg: 0,
   };
 
   render() {
     return (
+
       <div style={{}} key={this.props.product.name + Math.random()}>
         <h1>{this.props.product.brand}</h1>
+        {console.log("id from ittttt: ",this.props.id )}
         <h4>{this.props.product.name}</h4>
         {this.props.parent === "Cart" && (
           <h1 className="attribute">props.quantity*product.price </h1>
@@ -31,6 +35,10 @@ export default class Attributes extends PureComponent {
                         name={attribute.name}
                         type="radio"
                         value={item.displayValue}
+                        onClick={() => {
+                          this.props.AddAttribute({id :this.props.id ,name:attribute.name,displayValue : item.displayValue});
+                        }}
+                        onChange={()=>this.props.AddAttribute( {id :this.props.id ,name:attribute.name,displayValue : item.displayValue})}
                       />
                       <span
                         style={{
@@ -59,3 +67,19 @@ export default class Attributes extends PureComponent {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+   ids: state.cartReducer.ids,
+  };
+};
+
+const mapDispachToProps = (dispatch) => {
+  return {
+    add: (value) => dispatch({ type: "add", value: value }),
+    delete: (value) => dispatch({ type: "delete", value: value }),
+    AddAttribute : (value) => dispatch({ type: " AddAttribute", value: value }),
+  };
+};
+
+export default connect(mapStateToProps,mapDispachToProps)(Attributes)

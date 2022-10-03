@@ -91,7 +91,8 @@ let product = {
       ]
     }
   ]
-}
+} 
+
 const t =(id) => <Query query={GET_INFO} variables={{ id: id }}>
 {({ loading, error, data }) => {
   if (error) return <h1>Error...</h1>;
@@ -172,7 +173,5 @@ const mapStateToProps = (state) => {
      ids: state.cartReducer.ids,
     };
   };
-
-
 
 export default connect(mapStateToProps)(Cart);

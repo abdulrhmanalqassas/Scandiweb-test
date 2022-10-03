@@ -23,7 +23,7 @@ class CardN extends PureComponent {
             alt={this.props.titel}
           />
           { !this.props.inStock && <p className="overlay-text"  >OUT OF STOCK</p>}
-         { !this.props.inStock && <img alt="card-icon" className="category-card-icon" src={Common} />}
+         { this.props.inStock && <img alt="card-icon" className="category-card-icon" src={Common} />}
         </div>
         {/* {console.log("this.props", this.props)} */}
         <h2>{this.props.titel}</h2>
