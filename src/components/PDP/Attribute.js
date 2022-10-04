@@ -2,6 +2,20 @@ import React, { PureComponent } from "react";
 import Price from "../price/Price";
 import { connect } from "react-redux";
 
+let  isChecked= (id,name,value,ids)=>{
+  let checked = false
+  if (Object.keys(ids).length > 0 && Object.keys(ids).includes(id)){
+    if(ids[id].attributes[name] === value ) {
+      console.log("ids[id].attributes[name] === value",ids[id].attributes[name],":::",value )
+      checked = true
+      
+    }
+
+  } 
+  console.log("checkedcheckedchecked>>>>",checked)
+return checked
+
+}
 
 export  class Attributes extends PureComponent {
   state = {
@@ -24,6 +38,7 @@ export  class Attributes extends PureComponent {
               <h1 className="attribute"> {attribute.name} :</h1>
               <fieldset className="swatch-picker">
                 {attribute.items.map((item) => {
+                 
                   return (
                     <label
                       key={item.displayValue}
@@ -31,14 +46,13 @@ export  class Attributes extends PureComponent {
                         margin: !(attribute.name === "Color") && "5px 20px",
                       }}
                     >
+                     { console.log("input", isChecked(this.props.id,attribute.name,item.displayValue,this.props.ids))}
                       <input
                         name={attribute.name}
                         type="radio"
-                        // defaultChecked={
-                        //   Object.keys(this.props.ids).includes(this.props.id)===true?
-                        //   Object.keys(this.props.ids[this.props.id].Attributes).includes(attribute.name)?this.ids.attribute[attribute.name]===item.displayValue:
-                        //   false:false
-                        // }
+                        defaultChecked={
+                          isChecked(this.props.id,attribute.name,item.displayValue,this.props.ids)
+                        }
                         value={item.displayValue}
                         onClick={() => {
                          
