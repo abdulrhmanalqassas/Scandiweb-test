@@ -2,6 +2,7 @@ import { PureComponent } from "react";
 import { connect } from "react-redux";
 
 export  class CartButt extends PureComponent{
+ 
     render(){
         return(
             <div onClick={() => {

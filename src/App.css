@@ -368,7 +368,7 @@ background-color: red;
   position: relative;
   width: 200px;
   height: 288px;
-  background-color: #5ece7b;
+  /* background-color: #5ece7b; */
 }
 .cart-control-img img {
   width: 100%;

@@ -6,13 +6,14 @@ let  isChecked= (id,name,value,ids)=>{
   let checked = false
   if (Object.keys(ids).length > 0 && Object.keys(ids).includes(id)){
     if(ids[id].attributes[name] === value ) {
-      console.log("ids[id].attributes[name] === value",ids[id].attributes[name],":::",value )
+      // console.log("ids[id].attributes[name] === value",ids[id].attributes[name],":::",value )
       checked = true
       
     }
 
   } 
-  console.log("checkedcheckedchecked>>>>",checked)
+  console.log(ids)
+  // console.log("checkedcheckedchecked>>>>",checked)
 return checked
 
 }
@@ -27,7 +28,7 @@ export  class Attributes extends PureComponent {
 
       <div style={{}} key={this.props.product.name + Math.random()}>
         <h1>{this.props.product.brand}</h1>
-        {console.log("id from ittttt: ",this.props.id )}
+        {/* {console.log("id from ittttt: ",this.props.id )} */}
         <h4>{this.props.product.name}</h4>
         {this.props.parent === "Cart" && (
           <h1 className="attribute">props.quantity*product.price </h1>
@@ -46,7 +47,7 @@ export  class Attributes extends PureComponent {
                         margin: !(attribute.name === "Color") && "5px 20px",
                       }}
                     >
-                     { console.log("input", isChecked(this.props.id,attribute.name,item.displayValue,this.props.ids))}
+                     {/* { console.log("input", isChecked(this.props.id,attribute.name,item.displayValue,this.props.ids))} */}
                       <input
                         name={attribute.name}
                         type="radio"
@@ -86,7 +87,7 @@ export  class Attributes extends PureComponent {
             <Price id={this.props.id}></Price>
           </>
         )}
-        {console.log("this.props.ids",this.props.ids)}
+        {/* {console.log("this.props.ids",this.props.ids)} */}
       </div>
     );
   }
