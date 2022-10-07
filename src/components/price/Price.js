@@ -9,7 +9,8 @@ function curincy(curincy, label = "USD") {
 
 function productPrice(data, lapel) {
   let price = data.product.prices.filter((price) => curincy(price, lapel))[0];
-  return `${price.currency.symbol}${price.amount}`;
+  // return `${price.currency.symbol}${price.amount}`;
+  return {symbol : price.currency.symbol,amount: price.amount}
 }
 
 const GET_PRICE = gql`
@@ -33,12 +34,16 @@ class Price extends PureComponent {
         {({ loading, error, data }) => {
           if (error) return <h1>Error...</h1>;
           if (loading || !data) return <h1>Loading...</h1>;
-          return <h1>{productPrice(data, this.props.curincy)}</h1>;
+      
+          return <>{productPrice(data, this.props.curincy).symbol + productPrice(data, this.props.curincy).amount }</> ;
         }}
       </Query>
     );
   }
 }
+
+
+
 
 const mapStateToProps = (state) => {
   return {
@@ -47,3 +52,4 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps)(Price);
+

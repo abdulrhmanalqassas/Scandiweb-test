@@ -6,7 +6,7 @@ import {
   
 export default function client(){
     const client = new ApolloClient({
-        uri: 'http://localhost:4000/',
+        uri: 'https://634056c9241aac25493cf6e1--legendary-crepe-834a4a.netlify.app/',
         cache: new InMemoryCache()
       });
     return(

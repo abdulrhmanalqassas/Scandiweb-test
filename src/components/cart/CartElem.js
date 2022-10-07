@@ -30,7 +30,7 @@ const showAttributes = (id) => (
       if (loading || !data) return <h1>Loading...</h1>;
       let product = data.product;
       
-      return <Attributes product={product} id={id} />;
+      return <Attributes parent ={"Cart"} product={product} id={id} />;
     }}
   </Query>
 );
@@ -41,14 +41,15 @@ export class CartElem extends PureComponent {
     mainImg: 0,
   };
   render() {
+    let mini = this.props.parent =="mini-cart"
     return (
-      <section className="cart">
-        <div className="info">
+      <section className={ mini? "mini-cart":"cart"}>
+        <div className={ mini? "mini-info":"info"}>
           {showAttributes(this.props.id)}
           
         </div>
-        <div className="cart-control">
-          <div className="quantity">
+        <div className={ mini? "mini-cart-control": "cart-control"}>
+          <div className={ mini? "mini-quanttity":"quantity"}>
             <div
               className="add"
               onClick={() => {
@@ -79,10 +80,10 @@ export class CartElem extends PureComponent {
       if (loading || !data) return <h1>Loading...</h1>;
       let product = data.product;
       return (
-        <div className="cart-control-img">
+        <div className={ mini? "mini-cart-controler-img":"cart-control-img "}>
         <img alt="product in cart" src={product.gallery[this.state.mainImg]} />
-        <div className="cart-control-img-butt">
-          {console.log("idddddddddd>>>>>>", this.props.cartIds)}
+        <div className="cart-control-img-butt  ">
+          {/* {console.log("idddddddddd>>>>>>", this.props.cartIds)} */}
           <div
             className="prev"
             onClick={() => {
@@ -95,7 +96,7 @@ export class CartElem extends PureComponent {
             className="next"
             onClick={() => {
               this.state.mainImg > 0 && this.setState(() => ({ mainImg: this.state.mainImg - 1 }));
-              console.log("ccccccc",this.state.mainImg)
+              // console.log("ccccccc",this.state.mainImg)
             }}
           >
             &#10095;

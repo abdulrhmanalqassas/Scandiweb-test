@@ -4,6 +4,7 @@ import cartIcon from "../../images/cart.png";
 import { Query } from "@apollo/client/react/components";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import MiniCart from "../cart/MiniCart";
 
 const GET_CURRENCIES = gql`
   query {
@@ -15,6 +16,9 @@ const GET_CURRENCIES = gql`
 `;
 
 export class Action extends PureComponent {
+  state = {
+    showMiniCart :  false
+  }
   render() {
     return (
       <div className="nav-action">
@@ -44,13 +48,21 @@ export class Action extends PureComponent {
             </Query>
           </div>
         </div>
-        {
-          <Link to="/cart">
-            <div className="nav-cart">
+   
+       
+            <div onClick={()=>{
+
+            }
+
+            } 
+            className="nav-cart">
               <img alt="cart" src={cartIcon}></img>
+              
             </div>
-          </Link>
-        }
+            {/* { <MiniCart></MiniCart>} */}
+          
+
+       
       </div>
     );
   }

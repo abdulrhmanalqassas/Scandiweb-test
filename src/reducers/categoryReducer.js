@@ -4,10 +4,7 @@
     if (action.type === "change" ) {
         newState.category = action.value
     }
-    // switch (action.type){
-    //     case "change" : return state.category = "tech" 
-       
-    // }
+   
     return newState   
 }
 
