@@ -2,7 +2,6 @@ import { PureComponent } from "react";
 import { gql } from "@apollo/client";
 import cartIcon from "../../images/cart.png";
 import { Query } from "@apollo/client/react/components";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import MiniCart from "../cart/MiniCart";
 
@@ -17,10 +16,11 @@ const GET_CURRENCIES = gql`
 
 export class Action extends PureComponent {
   state = {
-    showMiniCart :  false
+    showMiniCart :  true
   }
   render() {
     return (
+      <>
       <div className="nav-action">
         <div className="dropdown">
           <div className="dropbtn">
@@ -51,7 +51,8 @@ export class Action extends PureComponent {
    
        
             <div onClick={()=>{
-
+             this.setState(() => ({ showMiniCart: !this.state.showMiniCart }))
+             console.log(this.state.showMiniCart)
             }
 
             } 
@@ -59,11 +60,10 @@ export class Action extends PureComponent {
               <img alt="cart" src={cartIcon}></img>
               
             </div>
-            {/* { <MiniCart></MiniCart>} */}
-          
-
-       
       </div>
+      {this.state.showMiniCart && <MiniCart></MiniCart>}
+      </>
+      
     );
   }
 }

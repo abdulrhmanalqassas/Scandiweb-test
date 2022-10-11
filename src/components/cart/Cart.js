@@ -6,6 +6,7 @@ export class Cart extends PureComponent {
   render() { 
     return (
       <>
+      <h1 className="category-title" >Cart</h1>
         {Object.keys(this.props.cartIds).map((id) => {
           return (
             <>
@@ -17,7 +18,6 @@ export class Cart extends PureComponent {
         <div className="order">
           <h3>Tax 21% : </h3>
           <h3>Quantity :{this.props.quantity}</h3>
-          {console.log("jjjjjjjjjj",this.props.quantity)}
           <h3>Total : </h3>
         </div>
       </>

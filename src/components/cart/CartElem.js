@@ -23,14 +23,14 @@ const GET_INFO = gql`
   }
 `;
 
-const showAttributes = (id) => (
+const showAttributes = (id,mini=false) => (
   <Query query={GET_INFO} variables={{ id: id }}>
     {({ loading, error, data }) => {
       if (error) return <h1>Error...</h1>;
       if (loading || !data) return <h1>Loading...</h1>;
       let product = data.product;
       
-      return <Attributes parent ={"Cart"} product={product} id={id} />;
+      return <Attributes parent ={mini?"mini-cart":"Cart"} product={product} id={id} />;
     }}
   </Query>
 );
@@ -45,13 +45,13 @@ export class CartElem extends PureComponent {
     return (
       <section className={ mini? "mini-cart":"cart"}>
         <div className={ mini? "mini-info":"info"}>
-          {showAttributes(this.props.id)}
+          {showAttributes(this.props.id,mini)}
           
         </div>
         <div className={ mini? "mini-cart-control": "cart-control"}>
-          <div className={ mini? "mini-quanttity":"quantity"}>
+          <div className={ mini? "mini-quantity":"quantity"}>
             <div
-              className="add"
+              className={ mini? "mini-add":"add"}
               onClick={() => {
                 this.props.increase({ id: this.props.id , value: this.props.cartIds[this.props.id].quantity + 1 });
                 this.setState({ state: this.state });
@@ -62,7 +62,7 @@ export class CartElem extends PureComponent {
             </div>
             <p>{this.props.cartIds[this.props.id].quantity}</p>
             <div
-              className="subtract"
+            className={ mini? "mini-subtract":"subtract"}
               onClick={() => {
                 this.props.cartIds[this.props.id].quantity > 0 && 
                 this.props.decrease({ id: this.props.id, value: this.props.cartIds[this.props.id].quantity - 1 });
@@ -82,10 +82,10 @@ export class CartElem extends PureComponent {
       return (
         <div className={ mini? "mini-cart-controler-img":"cart-control-img "}>
         <img alt="product in cart" src={product.gallery[this.state.mainImg]} />
-        <div className="cart-control-img-butt  ">
-          {/* {console.log("idddddddddd>>>>>>", this.props.cartIds)} */}
+        {!mini && <div className="cart-control-img-butt">
+          
           <div
-            className="prev"
+            className={ mini? "mini-prev":"prev"}
             onClick={() => {
               this.state.mainImg < product.gallery.length-1 && this.setState(() => ({ mainImg: this.state.mainImg + 1 }));
             }}
@@ -93,7 +93,7 @@ export class CartElem extends PureComponent {
             &#10094;
           </div>
           <div
-            className="next"
+           className={ mini? "mini-next":"next"}
             onClick={() => {
               this.state.mainImg > 0 && this.setState(() => ({ mainImg: this.state.mainImg - 1 }));
               // console.log("ccccccc",this.state.mainImg)
@@ -101,8 +101,8 @@ export class CartElem extends PureComponent {
           >
             &#10095;
           </div>
-        </div>
-        <div />
+        </div> }
+        {/* <div /> */}
       </div>
       )
     }}

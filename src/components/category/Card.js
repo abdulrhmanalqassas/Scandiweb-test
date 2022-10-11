@@ -2,6 +2,7 @@ import React, { PureComponent } from "react";
 import Common from "../../images/Common.png";
 import { useNavigate } from "react-router-dom";
 import Price from "../price/Price";
+import { connect } from "react-redux";
 
 class CardN extends PureComponent {
   render() {
@@ -23,7 +24,9 @@ class CardN extends PureComponent {
             alt={this.props.titel}
           />
           { !this.props.inStock && <p className="overlay-text"  >OUT OF STOCK</p>}
-         { this.props.inStock && <img alt="card-icon" className="category-card-icon" src={Common} />}
+         { this.props.inStock && <img alt="card-icon" onClick={() => {
+                this.props.add(this.props.id);
+              }} className="category-card-icon" src={Common} />}
         </div>
         {/* {console.log("this.props", this.props)} */}
         <h2>{this.props.titel}</h2>
@@ -49,4 +52,18 @@ export function Card(props) {
   );
 }
 
-export default Card;
+const mapStateToProps = (state) => {
+  return {
+   ids: state.cartReducer.ids,
+  };
+};
+const mapDispachToProps = (dispatch) => {
+  return {
+    add: (value) => dispatch({ type: "add", value: value }),
+ 
+  };
+};
+
+export default connect(mapStateToProps,mapDispachToProps)(Card);
+
+// export default Card;

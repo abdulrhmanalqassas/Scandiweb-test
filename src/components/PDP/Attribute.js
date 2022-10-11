@@ -21,27 +21,31 @@ export  class Attributes extends PureComponent {
   };
 
   render() {
+    let mini = this.props.parent ==="mini-cart"
+    // let mini = false
     return (
-      <div style={{}} key={this.props.product.name + Math.random()}>
-        <h1>{this.props.product.brand}</h1>
-        <h4>{this.props.product.name}</h4>
+      <div  key={this.props.product.name + Math.random()}>
+        <h1 className={mini && "mini-brand"}>{this.props.product.brand}</h1>
+        <h4 className={mini && "mini-brand"}>{this.props.product.name}</h4>
         {this.props.parent === "Cart" && (
-          <h1 className="attribute  ">{<Price id={this.props.id}></Price>}
+          <h1 className={ mini? "mini-attribute":"attribute"}>{<Price id={this.props.id}></Price>}
           </h1>
         )}
         {this.props.product.attributes.map((attribute) => {
           return (
             <div key={attribute.name}>
-              <h1 className="attribute"> {attribute.name} :</h1>
-              <fieldset className="swatch-picker ">
-                {attribute.items.map((item) => {
+              <h1 className={ mini? "mini-attribute mini-brand":"attribute"}> {attribute.name} :</h1>
+              <div style={{display:"block"}}>
+              <fieldset className={ mini? "mini-swatch-picker":"swatch-picker"}>
+
+              {attribute.items.map((item) => {
+               
                   return (
                     <label
                       key={item.displayValue}
                       style={{
-                        margin: !(attribute.name === "Color") && "5px 20px",
+                        margin: !(attribute.name === "Color") &&( mini? "1px 2px" : "5px 20px"),
                       }}
-
                     >
                       <input
                         name={attribute.name}
@@ -58,15 +62,21 @@ export  class Attributes extends PureComponent {
                       <span
                         style={{
                           backgroundColor: item.value,
-                          width: !(attribute.name === "Color") && "63px",
+                          width: !(attribute.name === "Color") &&(mini? "" : "63px"),
+                          height: !(attribute.name === "Color") &&( mini? "" : "30px"),
+                         
                         }}
                       >
-                        {!(attribute.name === "Color") && item.displayValue}
+                       {!(attribute.name === "Color") && item.displayValue}
                       </span>
                     </label>
                   );
                 })}
-              </fieldset>
+                  </fieldset>
+                </div>
+                
+            
+
             </div>
           );
         })}
