@@ -11,7 +11,7 @@ export class Action extends PureComponent {
   };
 
   render() {
-    {
+    
       if (document.getElementById("all") !== null) {
         if (this.state.showMiniCart) {
           document.getElementById("all").className = "overlay";
@@ -19,7 +19,7 @@ export class Action extends PureComponent {
           document.getElementById("all").className = "";
         }
       }
-    }
+    
     return (
       <>
         <div className="nav-action">

@@ -24,7 +24,7 @@ export class Cart extends Component {
   render() {
     return (
       <>
-        {console.log(Object.keys(this.props.cartIds))}
+
         {Object.keys(this.props.cartIds).map((id) => {
           return (
             <Query query={GET_PRICE} variables={{ id: id }}>
@@ -33,9 +33,7 @@ export class Cart extends Component {
                 if (loading || !data) return <Loading />;
                 let price = productPrice(data, this.props.curincy).amount;
                 let n = this.state.x + price * this.props.cartIds[id].quantity;
-                {
-                  this.setState(() => ({ x: n }));
-                }
+                this.setState(() => ({ x: n }));
                 return <></>;
               }}
             </Query>
