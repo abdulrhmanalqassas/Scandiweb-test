@@ -11,7 +11,7 @@ nav {
   height: 5rem;
   display: flex;
   flex-wrap: nowrap;
-  justify-content: space-between;
+  justify-content: unset;
   padding: 0rem 6.3125rem;
   font-family: "Raleway";
   font-weight: 400;
@@ -60,10 +60,13 @@ li {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin-left: auto;
+  
 }
 .nav-icon {
   width: 2.5625rem;
   height: 2.5625rem;
+  margin: auto;
 }
 
 /* .nav-action {
