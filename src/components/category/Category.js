@@ -1,22 +1,9 @@
 import React, { PureComponent } from "react";
 import Card from "./Card";
-import { gql } from "@apollo/client";
 import { Query } from "@apollo/client/react/components";
 import { connect } from "react-redux";
-
-const GET_PRODUCTS = gql`
-  query PRODUCTS($title: String!) {
-    category(input: { title: $title }) {
-      name
-      products {
-        id
-        name
-        inStock
-        gallery
-      }
-    }
-  }
-`;
+import { GET_PRODUCTS } from "../../gql/gql";
+import Loading from "../loading/Loading";
 
 export class Category extends PureComponent {
   render() {
@@ -24,7 +11,7 @@ export class Category extends PureComponent {
       <Query query={GET_PRODUCTS} variables={{ title: this.props.category }}>
         {({ loading, error, data }) => {
           if (error) return <h1>Error...</h1>;
-          if (loading || !data) return <h1>Loading...</h1>;
+          if (loading || !data) return <Loading />;
 
           const products = data.category.products;
           const cards = products.map((elem) => (
@@ -55,11 +42,5 @@ const mapStateToProps = (state) => {
     category: state.categoryReducer.category,
   };
 };
-
-// const mapDispachToProps = (dispatch)=>{
-//   return {
-//     change : (value)=> dispatch({type:"change",value:value})
-//   }
-// }
 
 export default connect(mapStateToProps)(Category);

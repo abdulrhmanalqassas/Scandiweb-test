@@ -1,29 +1,12 @@
 import React, { PureComponent } from "react";
-import { gql } from "@apollo/client";
 import { Query } from "@apollo/client/react/components";
 import parse from "html-react-parser";
 import Attributes from "./Attribute";
 import { useLocation } from "react-router-dom";
 import CartButt from "../cart/CartButt";
 import { DeleteButt } from "../cart/CartButt";
-const GET_INFO = gql`
-  query info($id: String!) {
-    product(id: $id) {
-      brand
-      name
-      description
-      gallery
-      attributes {
-        name
-        items {
-          displayValue
-          value
-          id
-        }
-      }
-    }
-  }
-`;
+import { GET_INFO } from "../../gql/gql";
+import Loading from "../loading/Loading";
 
 class PDPN extends PureComponent {
   state = {
@@ -34,7 +17,7 @@ class PDPN extends PureComponent {
       <Query query={GET_INFO} variables={{ id: this.props.location.state.id }}>
         {({ loading, error, data }) => {
           if (error) return <h1>Error...</h1>;
-          if (loading || !data) return <h1>Loading...</h1>;
+          if (loading || !data) return <Loading />;
           let product = data.product;
           return (
             <section className="PDP">
@@ -66,22 +49,24 @@ class PDPN extends PureComponent {
               <div className="info">
                 <Attributes
                   id={this.props.location.state.id}
-                  
                   parent={"PDP"}
                   product={product}
                 />
-             {console.log("ididididid",this.props.location.state.id)}
+                {console.log("ididididid", this.props.location.state.id)}
 
-               {this.props.location.state.inStock?   <>
-                <CartButt id={this.props.location.state.id}></CartButt>
-                <DeleteButt id={this.props.location.state.id} ></DeleteButt>
-                </>: <div className="info-butt out" >OUT OF STOCK</div>}
+                {this.props.location.state.inStock ? (
+                  <>
+                    <CartButt id={this.props.location.state.id}></CartButt>
+                    <DeleteButt id={this.props.location.state.id}></DeleteButt>
+                  </>
+                ) : (
+                  <div className="info-butt out">OUT OF STOCK</div>
+                )}
                 <div className="product-description">
                   {parse(product.description)}
                 </div>
               </div>
             </section>
-            
           );
         }}
       </Query>

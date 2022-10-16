@@ -1,18 +1,10 @@
 import { PureComponent } from "react";
 import brandIcon from "../../images/Brand-icon.png";
 import Action from "./Action";
-import { gql } from "@apollo/client";
+import { GET_CATEGORIES } from "../../gql/gql";
 import { Query } from "@apollo/client/react/components";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
-const GET_CATEGORIES = gql`
-  query {
-    categories {
-      name
-    }
-  }
-`;
 
 export class HeaderN extends PureComponent {
   render() {
@@ -61,16 +53,6 @@ const mapDispachToProps = (dispatch) => {
 
 export function Header(props) {
   const navigate = useNavigate();
-  return (
-    <HeaderN
-      // key={props.key}
-      // id={props.id}
-      // titel={props.name}
-      // inStock={props.inStock}
-      // gallery={props.gallery}
-      {...props}
-      navigate={navigate}
-    ></HeaderN>
-  );
+  return <HeaderN {...props} navigate={navigate}></HeaderN>;
 }
 export default connect(mapStateToProps, mapDispachToProps)(Header);

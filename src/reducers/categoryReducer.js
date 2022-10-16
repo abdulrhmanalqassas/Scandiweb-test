@@ -1,11 +1,11 @@
- const categoryReducer = (state = { category :"all"},action) => {
-    const newState = {...state};
+const categoryReducer = (state = { category: "all" }, action) => {
+  const newState = { ...state };
 
-    if (action.type === "change" ) {
-        newState.category = action.value
-    }
-   
-    return newState   
-}
+  if (action.type === "change") {
+    newState.category = action.value;
+  }
 
-export default categoryReducer ;
+  return newState;
+};
+
+export default categoryReducer;

@@ -25,16 +25,18 @@ export class App extends PureComponent {
     return (
       <Provider store = {store}>
        <Header/>
-      <Routes>
+       <div id="all">
+       <Routes>
        
-        {console.log(store.getState())}
-       <Route path="/" element={ < Category/>} />
-       <Route path="/pdp" element={ < PDP/>} />
-       <Route path="/cart" element={ < Cart/>} />
-      
-      
-       
-      </Routes>
+       {/* {console.log(store.getState())} */}
+      <Route path="/" element={ < Category/>} />
+      <Route path="/pdp" element={ < PDP/>} />
+      <Route path="/cart" element={ < Cart/>} />
+     
+
+     </Routes>
+       </div>
+    
       </Provider>
      
       
