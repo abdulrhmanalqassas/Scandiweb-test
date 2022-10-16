@@ -9,7 +9,7 @@ const showAttributes = (id, mini = false) => (
   <Query query={GET_INFO} variables={{ id: id }}>
     {({ loading, error, data }) => {
       if (error) return <h1>Error...</h1>;
-      if (loading || !data) return <h1>Loading...</h1>;
+      if (loading || !data) return <Loading/>;
       let product = data.product;
 
       return (
@@ -31,7 +31,7 @@ export class CartElem extends PureComponent {
   render() {
     let mini = this.props.parent === "mini-cart";
     return (
-      <section className={mini ? "mini-cart" : "cart"}>
+      <section onC className={mini ? "mini-cart" : "cart"}>
         <div className={mini ? "mini-info" : "info"}>
           {showAttributes(this.props.id, mini)}
         </div>
@@ -61,7 +61,7 @@ export class CartElem extends PureComponent {
                   });
                 this.setState({ state: this.state });
               }}
-            ></div>
+            >-</div>
           </div>
 
           <Query query={GET_INFO} variables={{ id: this.props.id }}>
